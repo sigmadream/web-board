@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="sd || sangkon han">
+    <title>게시글 페이지</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="/css/articles/article-content.css" rel="stylesheet">
+</head>
+
+<body>
+
+<header id="header">
+    헤더 삽입부
+    <hr>
+</header>
+
+<main id="article-main" class="container">
+    <header id="article-header" class="py-5 text-center">
+        <h1>첫번째 글</h1>
+    </header>
+
+    <div class="row g-5">
+        <section class="col-md-3 col-lg-4 order-md-last">
+            <aside>
+                <p><span id="nickname">sd1</span></p>
+                <p><a id="email" href="mailto:djkehh@gmail.com">sd@test.com</a></p>
+                <p>
+                    <time id="created-at" datetime="2023-06-04T00:00:00">2023-06-04</time>
+                </p>
+                <p><span id="hashtag">#python</span></p>
+            </aside>
+        </section>
+
+        <article id="article-content" class="col-md-9 col-lg-8">
+            <pre>본문</pre>
+        </article>
+    </div>
+
+    <div class="row g-5" id="article-buttons">
+        <form id="delete-article-form">
+            <div class="pb-5 d-grid gap-2 d-md-block">
+                <a class="btn btn-success me-md-2" role="button" id="update-article">수정</a>
+                <button class="btn btn-danger me-md-2" type="submit">삭제</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row g-5">
+        <section>
+            <form class="row g-3" id="comment-form">
+                <input type="hidden" class="article-id">
+                <div class="col-md-9 col-lg-8">
+                    <label for="comment-textbox" hidden>댓글</label>
+                    <textarea class="form-control" id="comment-textbox" placeholder="댓글 쓰기.." rows="3"
+                              required></textarea>
+                </div>
+                <div class="col-md-3 col-lg-4">
+                    <label for="comment-submit" hidden>댓글 쓰기</label>
+                    <button class="btn btn-primary" id="comment-submit" type="submit">쓰기</button>
+                </div>
+            </form>
+
+            <ul id="article-comments" class="row col-md-10 col-lg-8 pt-3">
+                <li>
+                    <form class="comment-form">
+                        <input type="hidden" class="article-id">
+                        <div class="row">
+                            <div class="col-md-10 col-lg-9">
+                                <strong>sd1</strong>
+                                <small>
+                                    <time>2022-01-01</time>
+                                </small>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+                                    Lorem ipsum dolor sit amet
+                                </p>
+                            </div>
+                            <div class="col-2 mb-3 align-self-center">
+                                <button type="submit" class="btn btn-outline-danger" id="delete-comment-button">삭제
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+                <li>
+                    <div class="row">
+                        <div class="col-md-10 col-lg-9">
+                            <strong>sd1</strong>
+                            <small>
+                                <time>2023-06-04</time>
+                            </small>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+                                Lorem ipsum dolor sit amet
+                            </p>
+                        </div>
+                        <div class="col-2 mb-3">
+                            <button type="submit" class="btn btn-outline-danger" hidden>삭제</button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+        </section>
+    </div>
+
+    <div class="row g-5">
+        <nav id="pagination" aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo; prev</span>
+                    </a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">next &raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</main>
+
+<footer id="footer">
+    <hr>
+    푸터 삽입부
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
