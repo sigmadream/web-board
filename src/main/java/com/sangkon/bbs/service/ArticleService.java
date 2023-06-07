@@ -1,6 +1,7 @@
 package com.sangkon.bbs.service;
 
 import com.sangkon.bbs.domain.Article;
+import com.sangkon.bbs.domain.Hashtag;
 import com.sangkon.bbs.domain.UserAccount;
 import com.sangkon.bbs.domain.constant.SearchType;
 import com.sangkon.bbs.dto.ArticleDto;
@@ -17,6 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityNotFoundException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -24,6 +27,7 @@ import java.util.List;
 @Service
 public class ArticleService {
 
+    private final HashtagService hashtagService;
     private final ArticleRepository articleRepository;
     private final UserAccountRepository userAccountRepository;
 
@@ -94,15 +98,16 @@ public class ArticleService {
     }
 
     @Transactional(readOnly = true)
-    public Page<ArticleDto> searchArticlesViaHashtag(String hashtag, Pageable pageable) {
-        if (hashtag == null || hashtag.isBlank()) {
+    public Page<ArticleDto> searchArticlesViaHashtag(String hashtagName, Pageable pageable) {
+        if (hashtagName == null || hashtagName.isBlank()) {
             return Page.empty(pageable);
         }
 
-        return articleRepository.findByHashtagNames(null, pageable).map(ArticleDto::from);
+        return articleRepository.findByHashtagNames(List.of(hashtagName), pageable).map(ArticleDto::from);
     }
 
     public List<String> getHashtags() {
         return articleRepository.findAllDistinctHashtags();
     }
+
 }
