@@ -1,11 +1,11 @@
 plugins {
-    id 'org.springframework.boot' version '2.7.12'
+    id 'org.springframework.boot' version '2.7.13'
     id 'io.spring.dependency-management' version '1.0.15.RELEASE'
     id 'java'
 }
 
 group = 'com.sangkon'
-version = 'v1.0'
+version = 'v1.5'
 sourceCompatibility = '17'
 
 configurations {
