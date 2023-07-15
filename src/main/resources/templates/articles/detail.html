@@ -27,10 +27,10 @@
     <div class="row g-5">
         <section class="col-md-3 col-lg-4 order-md-last">
             <aside>
-                <p><span id="nickname">sd1</span></p>
-                <p><a id="email" href="mailto:djkehh@gmail.com">sd@test.com</a></p>
+                <p><span id="nickname">Uno</span></p>
+                <p><a id="email" href="mailto:djkehh@gmail.com">uno@mail.com</a></p>
                 <p>
-                    <time id="created-at" datetime="2023-06-04T00:00:00">2023-06-04</time>
+                    <time id="created-at" datetime="2022-01-01T00:00:00">2022-01-01</time>
                 </p>
                 <p><span id="hashtag" class="badge text-bg-secondary mx-1"><a class="text-reset">#java</a></span></p>
             </aside>
@@ -52,11 +52,11 @@
 
     <div class="row g-5">
         <section>
-            <form class="row g-3" id="comment-form">
+            <form class="row g-3 comment-form">
                 <input type="hidden" class="article-id">
                 <div class="col-md-9 col-lg-8">
                     <label for="comment-textbox" hidden>댓글</label>
-                    <textarea class="form-control" id="comment-textbox" placeholder="댓글 쓰기.." rows="3"
+                    <textarea class="form-control comment-textbox" id="comment-textbox" placeholder="댓글 쓰기.." rows="3"
                               required></textarea>
                 </div>
                 <div class="col-md-3 col-lg-4">
@@ -66,46 +66,63 @@
             </form>
 
             <ul id="article-comments" class="row col-md-10 col-lg-8 pt-3">
-                <li>
-                    <form class="comment-form">
+                <li class="parent-comment">
+                    <form class="comment-delete-form">
                         <input type="hidden" class="article-id">
                         <div class="row">
                             <div class="col-md-10 col-lg-9">
-                                <strong>sd1</strong>
+                                <strong>Uno</strong>
                                 <small>
                                     <time>2022-01-01</time>
                                 </small>
-                                <p>
+                                <p class="mb-1">
                                     Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
                                     Lorem ipsum dolor sit amet
                                 </p>
                             </div>
                             <div class="col-2 mb-3 align-self-center">
-                                <button type="submit" class="btn btn-outline-danger" id="delete-comment-button">삭제
-                                </button>
+                                <button type="submit" class="btn btn-outline-danger">삭제</button>
                             </div>
                         </div>
                     </form>
-                </li>
-                <li>
+
+                    <ul class="row me-0">
+                        <li class="child-comment">
+                            <form class="comment-delete-form">
+                                <input type="hidden" class="article-id">
+                                <div class="row">
+                                    <div class="col-md-10 col-lg-9">
+                                        <strong>Uno</strong>
+                                        <small>
+                                            <time>2022-01-01</time>
+                                        </small>
+                                        <p class="mb-1">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
+                                            Lorem ipsum dolor sit amet
+                                        </p>
+                                    </div>
+                                    <div class="col-2 mb-3 align-self-center">
+                                        <button type="submit" class="btn btn-outline-danger">삭제</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </li>
+                    </ul>
+
                     <div class="row">
-                        <div class="col-md-10 col-lg-9">
-                            <strong>sd1</strong>
-                            <small>
-                                <time>2023-06-04</time>
-                            </small>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>
-                                Lorem ipsum dolor sit amet
-                            </p>
-                        </div>
-                        <div class="col-2 mb-3">
-                            <button type="submit" class="btn btn-outline-danger" hidden>삭제</button>
-                        </div>
+                        <details class="col-md-10 col-lg-9 mb-4">
+                            <summary>댓글 달기</summary>
+                            <form class="comment-form">
+                                <input type="hidden" class="article-id">
+                                <input type="hidden" class="parent-comment-id">
+                                <textarea class="form-control comment-textbox" placeholder="댓글 쓰기.." rows="2"
+                                          required></textarea>
+                                <button class="form-control btn btn-primary mt-2" type="submit">쓰기</button>
+                            </form>
+                        </details>
                     </div>
                 </li>
             </ul>
-
         </section>
     </div>
 
