@@ -2,6 +2,7 @@ package com.sangkon.bbs.repository;
 
 import com.sangkon.bbs.domain.Article;
 import com.sangkon.bbs.domain.QArticle;
+import com.sangkon.bbs.domain.projection.ArticleProjection;
 import com.sangkon.bbs.repository.querydsl.ArticleRepositoryCustom;
 import com.querydsl.core.types.dsl.DateTimeExpression;
 import com.querydsl.core.types.dsl.StringExpression;
@@ -13,7 +14,7 @@ import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource
+@RepositoryRestResource(excerptProjection = ArticleProjection.class)
 public interface ArticleRepository extends
         JpaRepository<Article, Long>,
         ArticleRepositoryCustom,

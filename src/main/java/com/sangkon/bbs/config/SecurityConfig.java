@@ -26,13 +26,39 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class SecurityConfig {
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http, OAuth2UserService<OAuth2UserRequest, OAuth2User> oAuth2UserService) throws Exception {
-        return http.authorizeHttpRequests(auth -> auth.requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll().mvcMatchers(HttpMethod.GET, "/", "/articles", "/articles/search-hashtag").permitAll().anyRequest().authenticated()).formLogin(withDefaults()).logout(logout -> logout.logoutSuccessUrl("/")).oauth2Login(oAuth -> oAuth.userInfoEndpoint(userInfo -> userInfo.userService(oAuth2UserService))).build();
+    public SecurityFilterChain securityFilterChain(
+            HttpSecurity http,
+            OAuth2UserService<OAuth2UserRequest, OAuth2User> oAuth2UserService
+    ) throws Exception {
+        return http
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+                        .mvcMatchers("/api/**").permitAll()
+                        .mvcMatchers(
+                                HttpMethod.GET,
+                                "/",
+                                "/articles",
+                                "/articles/search-hashtag"
+                        ).permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin(withDefaults())
+                .logout(logout -> logout.logoutSuccessUrl("/"))
+                .oauth2Login(oAuth -> oAuth
+                        .userInfoEndpoint(userInfo -> userInfo
+                                .userService(oAuth2UserService)
+                        )
+                )
+                .csrf(csrf -> csrf.ignoringAntMatchers("/api/**"))
+                .build();
     }
 
     @Bean
     public UserDetailsService userDetailsService(UserAccountService userAccountService) {
-        return username -> userAccountService.searchUser(username).map(BoardPrincipal::from).orElseThrow(() -> new UsernameNotFoundException("유저를 찾을 수 없습니다 - username: " + username));
+        return username -> userAccountService
+                .searchUser(username)
+                .map(BoardPrincipal::from)
+                .orElseThrow(() -> new UsernameNotFoundException("유저를 찾을 수 없습니다 - username: " + username));
     }
 
     @Bean

@@ -4,6 +4,7 @@ import com.sangkon.bbs.domain.ArticleComment;
 import com.sangkon.bbs.domain.QArticleComment;
 import com.querydsl.core.types.dsl.DateTimeExpression;
 import com.querydsl.core.types.dsl.StringExpression;
+import com.sangkon.bbs.domain.projection.ArticleCommentProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
@@ -12,7 +13,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-@RepositoryRestResource
+@RepositoryRestResource(excerptProjection = ArticleCommentProjection.class)
 public interface ArticleCommentRepository extends
         JpaRepository<ArticleComment, Long>,
         QuerydslPredicateExecutor<ArticleComment>,
